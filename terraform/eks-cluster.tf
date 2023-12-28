@@ -33,7 +33,7 @@ module "eks" {
 
 # Define the EBS CSI driver module
 module "ebs_csi_driver" {
-  source      = "terraform-aws-modules/eks/aws//modules/ebs-csi-drivers"
+  source      = "akw-devsecops/eks/aws//modules/aws-ebs-csi-driver"
   cluster_name = "myapp-eks-cluster"
 }
 
