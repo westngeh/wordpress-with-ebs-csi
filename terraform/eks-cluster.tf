@@ -31,10 +31,17 @@ module "eks" {
   }
 }
 
+output "eks_oidc_provider_arn" {
+  value = module.eks.oidc_provider_arn
+}
+
 # Define the EBS CSI driver module
 module "ebs_csi_driver" {
   source      = "akw-devsecops/eks/aws//modules/aws-ebs-csi-driver"
   cluster_name = "myapp-eks-cluster"
+  cluster_version   = module.eks.cluster_version
+  oidc_provider_arn = module.eks_oidc_provider_arn  # Use the OIDC provider ARN output from the eks module
+}
 }
 
 # IAM Policy Document for EBS CSI PVs
