@@ -34,7 +34,7 @@ module "eks" {
 # Define the EBS CSI driver module
 module "ebs_csi_driver" {
   source      = "terraform-aws-modules/eks/aws//modules/ebs-csi-drivers"
-  cluster_name = module.eks.cluster_id  # Use the cluster_id from the EKS module
+  cluster_name = "myapp-eks-cluster"
 }
 
 # IAM Policy Document for EBS CSI PVs
