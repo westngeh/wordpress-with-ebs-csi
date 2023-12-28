@@ -68,13 +68,13 @@ JSON
 # IAM Policy Attachment for EBS CSI PVs
 resource "aws_iam_role_policy_attachment" "ebs_csi_pvs" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"  # Update with the correct policy if needed
-  role       = module.ebs_csi_driver.worker_iam_role_name
+  role       = "eks-demo-iam-role"  # Replace with the correct IAM role name
 }
 
 # IAM Policy for EBS CSI PVs (custom policy)
 resource "aws_iam_role_policy" "ebs_csi_pvs_custom" {
   name   = "ebs_csi_pvs_custom"
-  role   = module.ebs_csi_driver.worker_iam_role_name
+  role   = "eks-demo-iam-role"  # Replace with the correct IAM role name
   policy = data.aws_iam_policy_document.ebs_csi_pvs.json
 }
 
