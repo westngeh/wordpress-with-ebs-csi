@@ -45,24 +45,20 @@ module "ebs_csi_driver" {
 
 # IAM Policy Document for EBS CSI PVs
 data "aws_iam_policy_document" "ebs_csi_pvs" {
-  source_json = <<JSON
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateVolume",
-        "ec2:AttachVolume",
-        "ec2:DetachVolume",
-        "ec2:DeleteVolume",
-        "ec2:DescribeVolumes"
-      ],
-      "Resource": "*"
-    }
-  ]
-}
-JSON
+  version = "2012-10-17"
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:CreateVolume",
+      "ec2:AttachVolume",
+      "ec2:DetachVolume",
+      "ec2:DeleteVolume",
+      "ec2:DescribeVolumes",
+    ]
+
+    resources = ["*"]
+  }
 }
 
 # IAM Policy Attachment for EBS CSI PVs
